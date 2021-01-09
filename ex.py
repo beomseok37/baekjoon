@@ -1,2 +1,3 @@
-num=0/1
-print(num)
+s=input()
+print(type('c'))
+print(type(s[0]))

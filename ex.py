@@ -1,3 +1,2 @@
-s=input()
-print(type('c'))
-print(type(s[0]))
+s="abcde"
+print(s[1:3])

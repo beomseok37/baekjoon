@@ -1,5 +1,3 @@
-str="abcdef"
-if "asdf" in str:
-    print(True)
-else:
-    print(False)
+l=['more']
+l.append('more')
+print('result')

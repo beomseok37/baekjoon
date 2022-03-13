@@ -1,37 +1,36 @@
-def dfs(r, c, idx, total):
-    global ans
-    if ans >= total + max_val * (3 - idx):
+def poly(count,total,x,y):
+    global answer
+    if answer >= total+maxNumber*(4-count):
         return
-    if idx == 3:
-        ans = max(ans, total)
+    if count == 4:
+        answer = max(answer,total)
         return
-    else:
-        for i in range(4):
-            nr = r + dr[i]
-            nc = c + dc[i]
-            if 0 <= nr < N and 0 <= nc < M and visit[nr][nc] == 0:
-                if idx == 1:
-                    visit[nr][nc] = 1
-                    dfs(r, c, idx + 1, total + arr[nr][nc])
-                    visit[nr][nc] = 0
-                visit[nr][nc] = 1
-                dfs(nr, nc, idx + 1, total + arr[nr][nc])
-                visit[nr][nc] = 0
+    nextX=[0,-1,1,0]
+    nextY=[-1,0,0,1]
 
-N, M = list(map(int,input().split(' ')))
-arr = []
+    for i in range(4):
+        newX,newY = x+nextX[i],y+nextY[i]
+        if 0<=newX<N and 0<=newY<M and not visited[newX][newY]:
+            if count == 2:
+                visited[newX][newY] = 1
+                poly(count+1,total+paper[newX][newY],x,y)
+                visited[newX][newY] = 0
+            visited[newX][newY] = 1
+            poly(count+1,total+paper[newX][newY],newX,newY)
+            visited[newX][newY] = 0
+
+N, M = list(map(int,input().split()))
+paper = []
 for i in range(N):
-  arr.append(list(map(int,input().split(' '))))
-visit = [([0] * M) for _ in range(N)]
-dr = [-1, 0, 1, 0]
-dc = [0, 1, 0, -1]
-ans = 0
-max_val = max(map(max, arr))
+    paper.append(list(map(int,input().split())))
+visited = [[0]*M for i in range(N)]
+answer = 0
+maxNumber = max(map(max,paper))
 
-for r in range(N):
-    for c in range(M):
-        visit[r][c] = 1
-        dfs(r, c, 0, arr[r][c])
-        visit[r][c] = 0
+for i in range(N):
+    for j in range(M):
+        visited[i][j] = 1
+        poly(1,paper[i][j],i,j)
+        visited[i][j] = 0
 
-print(ans)
+print(answer)

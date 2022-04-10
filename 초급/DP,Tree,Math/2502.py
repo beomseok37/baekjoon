@@ -15,7 +15,7 @@ a,b = fibo(day)
 for i in range(riceCake//b,0,-1):
   temp = riceCake - i*b
   firstRiceCake = temp/a
-  if firstRiceCake == int(firstRiceCake):
+  if firstRiceCake!=0 and firstRiceCake == int(firstRiceCake):
     print(int(firstRiceCake))
     print(i)
     break

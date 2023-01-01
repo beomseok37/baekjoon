@@ -20,7 +20,7 @@ result=0
 for i in range(m):
     a,b = list(map(int,input().split()))
     union(a,b)
-        
+    
 lecture_list = list(map(int,input().split()))
 for i in range(n-1):
     prev_class,after_class = lecture_list[i],lecture_list[i+1]
